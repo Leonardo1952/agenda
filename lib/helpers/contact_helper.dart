@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'dart:async';
 
 final String contactTable = "contactTable";
 final String idColumn = 'idColumn';
@@ -8,11 +9,11 @@ final String emailColumn = 'emailColumn';
 final String phoneColumn = 'phoneColumn';
 final String imgColumn = 'imgColumn';
 
-class ContractHelper {
+class ContactHelper {
 
   static final ContactHelper _instance = ContactHelper.internal();
 
-  factory ContactHelper=> _instance;
+  factory ContactHelper()=> _instance;
 
   ContactHelper.internal();
 
@@ -22,7 +23,7 @@ class ContractHelper {
     if(_db != null){
       return _db;
     } else {
-      _db = await initdb;
+      _db = await initDb();
       return _db;
     }
   }
@@ -39,7 +40,7 @@ class ContractHelper {
     });
   }
 
-  
+
 }
 // id name  email   phone   img
 
